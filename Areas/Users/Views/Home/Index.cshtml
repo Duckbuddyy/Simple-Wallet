@@ -1,0 +1,122 @@
+﻿@model WebTabanliProje.Areas.Users.ViewModels.RecordsIndex
+
+@helper NoteAdapter(string Note)
+{
+    if (Note == null)
+    {
+        @: -
+    }
+    else if (Note.Length > 35)
+    {
+        string sub = Note.Substring(0, 33);
+        sub += "...";
+        @sub
+    }
+    else
+    {
+        @Note
+    }
+}
+
+<!-- CHART SECTION -->
+<section id="chart-section">
+    <container class="container-fluid">
+        <div class="row justify-content-center pl-5" style="width:100%;">
+            <div class="col-md-6" id="spark-chart"></div>
+            <div class="col-md-4" id="pie-chart"></div>
+        </div>
+    </container>
+</section>
+
+<!-- ALERT SECTION -->
+<div id="alert" class="container">
+    @if (ViewBag.UserAlert == "Pwd")
+    {
+        <div class="alert alert-success">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Your Password Changed Successfully!
+        </div>
+        ViewBag.UserAlert = "";
+    }
+    else if (ViewBag.UserAlert == "Email")
+    {
+        <div class="alert alert-success">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Your E-mail Adress Changed Successfully!
+        </div>
+        ViewBag.UserAlert = "";
+    }
+    else if (ViewBag.UserAlert == "NewRecord")
+    {
+        <div class="alert alert-info">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            New Record Added
+        </div>
+        ViewBag.UserAlert = "";
+    }
+    else if (ViewBag.UserAlert == "EditRecord")
+    {
+        <div class="alert alert-info">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Record Editted
+        </div>
+        ViewBag.UserAlert = "";
+    }
+    else if (ViewBag.UserAlert == "ErrorEditRecord")
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            You had tried to access non-authorized area!
+        </div>
+        ViewBag.UserAlert = "";
+    }
+    else if (ViewBag.UserAlert == "DeleteRecord")
+    {
+        <div class="alert alert-info">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Record Deleted
+        </div>
+        ViewBag.UserAlert = "";
+    }
+</div>
+
+<!-- TABLE SECTION -->
+<section id="table-section" class="container">
+    <a href=@Url.RouteUrl("CreateRecord")>
+        <button class="btn btn-sm btn-outline-primary my-2">
+            <i class="fa fa-plus-square-o pr-2" style="margin-left:-5px;"></i>Add Record
+        </button>
+    </a>
+    <table id="home-table" class="table table-hover mt-2">
+        <thead class="bg-primary">
+            <tr>
+                <th class="text-white" scope="col">Record</th>
+                <th class="text-white" scope="col">Category</th>
+                <th class="text-white" scope="col">Type</th>
+                <th class="text-white" scope="col">Amount</th>
+                <th class="text-white" scope="col">Note</th>
+                <th class="text-white" scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 0;
+                foreach (var record in Model.Records)
+                {
+                    <tr>
+                        <td style="width:5%">@(i + 1)</td>
+                        <th style="width:24%">@Model.CategoryString[i++].ToString()</th>
+                        <th>@Html.Raw(record.Type == true ? "Income" : "Expense")</th>
+                        <th>@record.Amount</th>
+                        <td style="width:30%"><p class="d-inline">@NoteAdapter(record.Note)</p></td>
+                        <td style="width:20%">
+                            <div class="btn-group-sm" role="group" style="margin-top:-5px;">
+                                <a href="@Url.RouteUrl("EditRecord", new { record.Record_Id })"><button type="button" class="btn btn-sm btn-primary"><i class="fa pr-1 fa-edit"></i>Edit</button></a>
+                                <a href="@Url.Action("DeleteRecord", new { record.Record_Id })" data-post="Are you sure you want to delete record @i ?"><button type="button" class="btn btn-sm btn-danger"><i class="fa pr-1 fa-trash-o"></i>Delete</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</section>

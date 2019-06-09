@@ -1,0 +1,19 @@
+﻿@model IList<WebTabanliProje.Areas.Admin.ViewModels.RoleCheckBox>
+
+<div class="card">
+    <div class="card-header">Roles</div>
+    <div class="card-body" style="padding:unset">
+        <ul class="list-group list-group-flush">
+           @for (var i = 0; i < Model.Count; i++)
+            {
+            <li class="list-group-item">
+                @Html.Hidden("Roles[" + i + "].Id", Model[i].Id)
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" id="Roles_@(i)__IsChecked" name="Roles[@(i)].IsChecked" type="checkbox" value="true" @if (Model[i].IsChecked) { @: checked="checked"
+                }/> <label class="custom-control-label" for="Roles_@(i)__IsChecked" style="font-size:16px;">@Model[i].RoleName</label>
+                </div>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

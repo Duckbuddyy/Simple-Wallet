@@ -1,0 +1,27 @@
+﻿@model WebTabanliProje.Areas.Admin.ViewModels.UsersEdit
+
+<h1>Edit User @Model.UserName</h1>
+@using (Html.BeginForm())
+{
+    if (ViewData.ModelState.ContainsKey("Edit"))
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            @Html.ValidationSummary(false, "Errors: ")
+        </div>
+    }
+    <div class="form-group">
+        <label for="Email">Email address</label>
+        @Html.TextBoxFor(f => f.Email, new { @class = "form-control", type = "email", placeholder = "Enter e-mail adress", required = true })
+    </div>
+    <div class="form-group">
+        <label for="UserName">Username</label>
+        @Html.TextBoxFor(f => f.UserName, new { @class = "form-control", placeholder = "Username required for login", required = true })
+    </div>
+    @Html.Partial("_RoleEditor", Model.Roles)
+    <div class="mt-3">
+        <button type="submit" class="btn btn-outline-primary">Edit User</button>
+        <a class="ml-2" href="@Url.Action("index")">or cancel</a>
+    </div>
+
+}

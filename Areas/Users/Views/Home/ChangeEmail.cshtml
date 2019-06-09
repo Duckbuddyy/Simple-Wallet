@@ -1,0 +1,28 @@
+﻿@model WebTabanliProje.Areas.Users.ViewModels.ChangeEmail
+
+<div class="container">
+    <h1>Change E-Mail</h1>
+    <form action="ChangeEmail" method="post">
+        @if (ViewData.ModelState.ContainsKey("ChangeEmail"))
+        {
+            <div class="alert alert-danger">
+                <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                @Html.ValidationSummary(false, "Errors: ")
+            </div>
+        }
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" placeholder="@Model.Email" readonly>
+        </div>
+        <div class="form-group">
+            <label for="NewEmail">New Email</label>
+            <input type="email" required="True" data-val="true" class="form-control" id="NewEmail" name="NewEmail">
+        </div>
+        <div class="form-group">
+            <label for="UserPassword">Password</label>
+            <input type="password" required="True" data-val="true" class="form-control" id="UserPassword" name="UserPassword">
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Change E-mail</button>
+        <a class="ml-2" href="@Url.Action("index")">or cancel</a>
+    </form>
+</div>

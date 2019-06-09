@@ -1,0 +1,69 @@
+﻿body {
+    background-color: #EFFDFF;
+}
+
+/*NAVBAR*/
+.navbar .navbar-brand {
+    color: #E6FAFC;
+    font-size: 26px;
+}
+
+.bg-dark {
+    background-color: rgba(17,20,15,.8) !important;
+}
+
+.navbar .nav-item .nav-link {
+    color: white;
+    transition: color .3s ease;
+}
+
+.navbar .nav-item .nav-link:hover {
+    color: #9CFC97;
+    transition: color .3s ease;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item:hover{
+    cursor: pointer;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,.1);
+}
+
+.btn-outline-primary {
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*RENDERBODY USER SECTION*/
+#user-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#user-renderbody {
+    padding-bottom: 55px;
+}
+
+/*CHART SECTION*/
+#pie-chart {
+    max-width: 550px;
+    min-width:550px;
+    margin-top: 10px;
+}
+#spark-chart {
+    min-width: 530px;
+    margin-top: 15px;
+}
+
+/*FOOTER SECTION*/
+#footer-section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
+    color: #fff;
+    background-color: black;
+}

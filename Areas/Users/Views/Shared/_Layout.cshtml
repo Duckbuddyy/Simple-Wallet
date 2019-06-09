@@ -1,0 +1,142 @@
+﻿@using System.Web.Optimization;
+@helper SelectedTabClass(string tabName)
+{
+    if (tabName == ViewBag.SelectedTab)
+    {
+        @:active
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>User - WaPP</title>
+    @Styles.Render("~/User/Styles")
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+    <section id="navbar-section">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#nvbCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="@Url.RouteUrl("Home")">
+                    <img src="~/Content/Images/logo.svg" width="30" height="30" class="d-inline-block align-top mt-1">
+                    WAPP
+                </a>
+
+                <div class="collapse navbar-collapse" id="nvbCollapse">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link @SelectedTabClass("Home")" href="@Url.RouteUrl("Home")">Home</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@System.Web.HttpContext.Current.User.Identity.Name </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item @SelectedTabClass("ChangeEmail")" href="@Url.RouteUrl("UserChangeEmail")">Change E-Mail</a>
+                                <a class="dropdown-item @SelectedTabClass("ChangePassword")" href="@Url.RouteUrl("UserChangePwd")">Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.RouteUrl("Logout")">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!--RENDERBODY USER SECTION-->
+    <section id="user-container">
+
+        <div id="user-renderbody">
+            <div class="bg-transparent" style="height:75px; width:auto;"></div>
+            @RenderBody()
+        </div>
+
+        <!--FOOTER SECTION-->
+        <section id="footer-section" class="pt-2">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-md-6 mx-auto">
+                        <p class="lead">Copyright by Duckbuddyy &copy; @DateTime.Now.Year</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    @Scripts.Render("~/User/Scripts")
+
+    <!--CHART SCRIPTS-->
+    <script>
+        var table = document.getElementById("home-table")
+        var recordNameArray = new Array();
+        var recordAmountArray = new Array();
+        var AmountList = new Array();
+
+        var sumAmount = Number();
+        var tempAmount = Number();
+        var lastAmount = Number();
+        var rowCount = Number(table.rows.length);
+        var iterator, iiterator = Number();
+        var found = Boolean(false);
+
+        for (iterator = 1; iterator < rowCount; iterator++) {
+            for (iiterator = 0; iiterator < recordNameArray.length; iiterator++) {
+                if (recordNameArray[iiterator] == table.rows[iterator].cells.item(1).innerHTML) {
+                    found = true;
+                    break;
+                }
+            }
+            var type = new String(table.rows[iterator].cells.item(2).innerHTML);
+            if (type == "Expense") {
+                if (found) {
+                    recordAmountArray[iiterator] += Number(table.rows[iterator].cells.item(3).innerHTML);
+                }
+                else {
+                    recordNameArray.push(table.rows[iterator].cells.item(1).innerHTML);
+                    recordAmountArray.push(Number(table.rows[iterator].cells.item(3).innerHTML));
+                }
+                tempAmount = Number(table.rows[iterator].cells.item(3).innerHTML);
+                tempAmount -= tempAmount * 2;
+            }
+            else
+                tempAmount = Number(table.rows[iterator].cells.item(3).innerHTML);
+            if (AmountList.length > 0) {
+                lastAmount = AmountList[AmountList.length-1];
+                tempAmount = lastAmount + tempAmount;
+            }
+            AmountList.push(tempAmount);
+            sumAmount += Number(table.rows[iterator].cells.item(3).innerHTML);
+            iiterator = 0;
+            found = false;
+        }
+
+        var pieChartOptions = { series: recordAmountArray, labels: recordNameArray, chart: { type: 'donut', height: 350 } };
+        var pieChart = new ApexCharts(document.querySelector("#pie-chart"), pieChartOptions);
+
+        var sparkChartOptions = {
+            chart: { type: 'area', height: 320, sparkline: { enabled: true } },
+            stroke: { curve: 'straight' },
+            fill: { opacity: 0.3 },
+            series: [{ data: AmountList, name: 'Balance' }],
+            title: { text: sumAmount + " ₺", offsetX: 0, style: { fontSize: '24px' } },
+            subtitle: { text: 'Money Flow', offsetX: 0, style: { fontSize: '16px'} }
+        }
+        var sparkChart = new ApexCharts(document.querySelector("#spark-chart"), sparkChartOptions);
+
+        if (recordNameArray.length > 0) {
+            sparkChart.render();
+            pieChart.render();
+        }
+       
+    </script>
+
+</body>
+</html>

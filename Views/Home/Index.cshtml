@@ -1,0 +1,262 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<!-- Scroll JS-->
+<script src="~/Scripts/aos.js"></script>
+<script>AOS.init();</script>
+
+<!--SIGN_IN MODAL -->
+<div id="signin_Modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="close" data-dismiss="modal" style="font-size:20px;">&times;</button>
+            </div>
+            @Html.Partial("~/Views/Home/Modals/ModalSignIn.cshtml")
+        </div>
+    </div>
+</div>
+
+<!--SIGN_UP MODAL -->
+<div id="signup_Modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Register</h4>
+                <button type="button" class="close" data-dismiss="modal" style="font-size:20px;">&times;</button>
+            </div>
+            @Html.Partial("~/Views/Home/Modals/ModalSignUp.cshtml")
+        </div>
+    </div>
+</div>
+
+<!-- HEADER SECTION -->
+<header id="header-section">
+    <div class="overlay">
+        <div class="container">
+            <div class="row text-center" id="myContent">
+                <div class="col my-auto">
+                    <h1 class="display-2"><span>WaPP - </span>Care Your Wallet</h1>
+                    <div id="header-bottom">
+                        <p class="text-muted"><em>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</em></p>
+                        <button id="signup-button" class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#signup_Modal">Sign Up!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- FEATURES SECTION -->
+<section id="features-section" class="py-5">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4 text-center" id="first-feature" data-aos="fade-up">
+                <div class="feature">
+                    <div class="feature-top">
+                        <i class="fa fa-money"></i>
+                        <h3 class="mt-3">Note Your Money</h3>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tempus eros quis quam bibendum ultrices. Sed vitae porttitor ante. Praesent iaculis.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center" id="second-feature" data-aos="fade-up">
+                <div class="feature">
+                    <div class="feature-top">
+                        <i class="fa fa-line-chart"></i>
+                        <h3 class="mt-3">See Your Spending</h3>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tempus eros quis quam bibendum ultrices. Sed vitae porttitor ante. Praesent iaculis.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center" id="third-feature" data-aos="fade-up">
+                <div class="features">
+                    <div class="feature-top">
+                        <i class="fa fa-leaf"></i>
+                        <h3 class="mt-3">Start Saving</h3>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tempus eros quis quam bibendum ultrices. Sed vitae porttitor ante. Praesent iaculis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HISTORY SECTION -->
+<section id="history-section" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div id="historyLeft" class="col-lg-6" data-aos="fade-right" data-aos-delay="100" data-aos-duration="700">
+                <img src="~/Content/Images/history-section-img.svg" class="img-fluid" alt="Our History" />
+            </div>
+            <div id="historyRight" class="col-lg-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="700">
+                <h2 class="mt-3 mb-4">Our History</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet elit et enim convallis finibus. Praesent odio velit, efficitur vitae purus nec, commodo convallis diam. Aliquam id semper leo. Integer convallis nisi id quam sagittis, eu porta risus luctus. Proin ut ullamcorper dui, interdum egestas dolor. Cras congue molestie aliquam. Phasellus at diam cursus justo posuere convallis. Donec pulvinar ornare magna non aliquet. Quisque imperdiet scelerisque metus. Pellentesque dapibus, lacus at interdum luctus, turpis velit pretium lacus, sed aliquet odio nunc rhoncus nisi.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet elit et enim convallis finibus. Praesent odio velit, efficitur vitae purus nec, commodo convallis diam. Aliquam id semper leo. Integer convallis nisi id quam sagittis, eu porta risus luctus. Proin ut ullamcorper dui, interdum egestas dolor. Cras congue molestie aliquam. Phasellus at diam cursus justo posuere convallis. Donec pulvinar ornare magna non aliquet. Quisque imperdiet scelerisque metus. Pellentesque dapibus, lacus at interdum luctus, turpis velit pretium lacus, sed aliquet odio nunc rhoncus nisi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--SLIDE SECTION-->
+<section id="mySlide" class="text-center py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="quote"> <i class="fa fa-quote-left fa-4x"></i> </div>
+                <div id="MyCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#MyCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#MyCarousel" data-slide-to="1"></li>
+                        <li data-target="#MyCarousel" data-slide-to="2"></li>
+                        <li data-target="#MyCarousel" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="bg-transparent" style="height:240px; width:1px;"></div>
+                            <div class="carousel-caption">
+                                <blockquote id="blockquote_text" class="blockquote">I’d like to live as a poor man with lots of money. </blockquote>
+                                <footer class="blockquote-footer">Pablo Picasso<cite title="Job"> Artist</cite></footer>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="bg-transparent" style="height:240px; width:1px;">
+                                <div class="carousel-caption">
+                                    <blockquote id="blockquote_text" class="blockquote">Money was never a big motivation for me, except as a way to keep score. The real excitement is playing the game </blockquote>
+                                    <footer class="blockquote-footer">Donald Trump<cite title="Job"> President of USA</cite></footer>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="bg-transparent" style="height:240px; width:1px;"></div>
+                            <div class="carousel-caption">
+                                <blockquote id="blockquote_text" class="blockquote">I have $100 billion… You realize I could spend $3 million a day, every day, for the next 100 years? And that's if I don't make another dime…</blockquote>
+                                <footer class="blockquote-footer">Bill Gates<cite title="Job"> Microsoft founder</cite></footer>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="bg-transparent" style="height:240px; width:1px;"></div>
+                            <div class="carousel-caption">
+                                <blockquote id="blockquote_text" class="blockquote">Turkey’s economy continues its strong growth momentum. Our economic foundations are going to be strong and our outlook is promising.</blockquote>
+                                <footer class="blockquote-footer">Berat Albayrak<cite title="Job"> Minister of Treasury and Finance of Turkey</cite></footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--CONTACT SECTION-->
+<section id="contact-section" class="py-5 mt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Contact Us</h2>
+                <p>lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eismod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h4>Address</h4>
+                <p>Abdurrahman Mah. Taşdemir Sok. No:1 Merkez/Edirne</p>
+                <h4>E-Mail</h4>
+                <p>emirhansoylu98@gmail.com</p>
+                <h4>Phone</h4>
+                <p>507-436-79**</p>
+                <div class="d-flex flex-row">
+                    <div class="p-2">
+                        <a href="https://www.instagram.com/emirhan.syl/"><i class="fa fa-instagram fa-2x"></i></a>
+                    </div>
+                    <div class="p-2">
+                        <a href="https://github.com/Duckbuddyy"><i class="fa fa-github fa-2x"></i></a>
+                    </div>
+                    <div class="p-2">
+                        <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form method="post" action="sendform">
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-user" style="width:20px"></i>
+                                </span>
+                            </div>
+                            <input class="form-control" type="text" placeholder="Name" name="Name" required="True" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-envelope" style="width:20px"></i>
+                                </span>
+                            </div>
+                            <input class="form-control" type="email" placeholder="E-mail" name="Email" required="True" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-pencil" style="width:20px"></i>
+                                </span>
+                            </div>
+                            <textarea class="form-control" placeholder="Message" name="Message" rows="5" required="True"></textarea>
+                        </div>
+                    </div>
+                    @if (ViewBag.Action == "Contact")
+                    {
+                        <div class="alert alert-success" role="alert">Your message sended successfully</div>
+                    }
+                    else
+                    {
+                        <input type="submit" value="SUBMIT" class="btn btn-primary btn-block" />
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript -->
+<script type="text/javascript" src="~/Scripts/smooth-scroll.min.js"></script>
+<script>
+    var scroll = new SmoothScroll('a[href*="#"]');
+</script>
+
+@if (ViewBag.Action == "SignUp")
+{
+    <!-- JS for Login Action-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#signup_Modal").modal('show');
+        });
+    </script>
+    ViewBag.Action = "";
+}
+else if (ViewBag.Action == "SignIn")
+{
+    <!-- JS for Login Action-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#signin_Modal").modal('show');
+        });
+    </script>
+    ViewBag.Action = "";
+}
+else if (ViewBag.Action == "Contact")
+{
+    <script>
+        var contactscroll = document.querySelector('#contact-section');
+        scroll.animateScroll(contactscroll);
+    </script>
+    ViewBag.Action = "";
+}

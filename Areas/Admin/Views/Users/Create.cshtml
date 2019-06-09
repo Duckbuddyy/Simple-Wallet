@@ -1,0 +1,30 @@
+﻿@model WebTabanliProje.Areas.Admin.ViewModels.UsersCreate
+
+<h1>Create User</h1>
+<form action="/Admin/Users/Create" method="post">
+    if (ViewData.ModelState.ContainsKey("Create"))
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            @Html.ValidationSummary(false, "Errors: ")
+        </div>
+    }
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input class="form-control" data-val="true" id="Email" name="Email" placeholder="Enter e-mail adress" required="True" type="email" value="">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="UserName">Username</label>
+        <input class="form-control" data-val="true" id="UserName" name="UserName" placeholder="Username required for login" required="True" type="text" value="">
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input class="form-control" data-val="true" id="UserPassword" name="UserPassword" placeholder="Password can not be empty" required="True" type="password">
+    </div>
+    @Html.Partial("_RoleEditor", Model.Roles)
+    <div class="mt-3">
+        <input type="submit" value="Create Record" class="btn btn-outline-primary" />
+        <a class="ml-2" href="@Url.Action("index")">or cancel</a>
+    </div>
+</form>

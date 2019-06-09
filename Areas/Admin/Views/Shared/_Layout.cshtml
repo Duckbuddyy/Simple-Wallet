@@ -1,0 +1,74 @@
+﻿@using System.Web.Optimization;
+@helper SelectedTabClass(string tabName)
+{
+    if (tabName == ViewBag.SelectedTab)
+    {
+        @:active
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Admin - WaPP</title>
+    @Styles.Render("~/Admin/Styles")
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+    <section id="navbar-section">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#nvbCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a href="@Url.RouteUrl("Home")" class="navbar-brand">
+                    <img src="~/Content/Images/logo.svg" width="30" height="30" class="d-inline-block align-top mt-1">
+                    WaPP
+                </a>
+
+                <div class="collapse navbar-collapse" id="nvbCollapse">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link @SelectedTabClass("Home")" href="@Url.Action("Index", "Home", new { area = "Admin" })">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @SelectedTabClass("Users")" href="@Url.Action("Index", "Users", new { area = "Admin" })">Users</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@System.Web.HttpContext.Current.User.Identity.Name </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.RouteUrl("Logout")">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!--RENDERBODY ADMIN SECTION-->
+    <div id="admin-container">
+        <div id="admin-renderbody" class="container">
+            <div class="bg-transparent" style="height:75px; width:auto;"></div>
+            @RenderBody()
+        </div>
+
+        <!--FOOTER SECTION-->
+        <section id="footer-section" class="pt-2">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-md-6 mx-auto">
+                        <p class="lead">Copyright by Duckbuddyy &copy; @DateTime.Now.Year</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    @Scripts.Render("~/Admin/Scripts")
+</body>
+</html>

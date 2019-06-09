@@ -1,0 +1,27 @@
+﻿<form action="SignIn" method="post">
+    @if (ViewData.ModelState.ContainsKey("SignIn"))
+    {
+        <div class="alert alert-danger">
+            <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            @Html.ValidationSummary(false, "Errors: ")
+        </div>
+    }
+    <div class="modal-body">
+        <div class="form-group row">
+            <label for="UserName" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" required="True" class="form-control" data-val="true" id="UserName" name="UserName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" required="True" autocomplete="on" data-val="true" class="form-control" id="UserPassword" name="UserPassword">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" value="Login">Login</button>
+        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+    </div>
+</form>

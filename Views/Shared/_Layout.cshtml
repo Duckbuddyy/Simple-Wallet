@@ -1,0 +1,54 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - Web Tabanlı Proje</title>
+    @Styles.Render("~/Styles")
+</head>
+<body>
+    <!--NAVBAR SECTION-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#nvbCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#header-section">
+                <img src="~/Content/Images/logo.svg" width="30" height="30" class="d-inline-block align-top mt-1">
+                WaPP
+            </a>
+
+            <div class="collapse navbar-collapse" id="nvbCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-link" type="button" data-toggle="modal" data-target="#signin_Modal">Sign In</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#history-section">Our History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact-section">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <!--FOOTER SECTION-->
+    <section id="footer-section" class="pt-2">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-6 mx-auto">
+                    <p class="lead">
+                        Copyright by Duckbuddyy &copy; @DateTime.Now.Year
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @Scripts.Render("~/Scripts")
+</body>
+</html>
